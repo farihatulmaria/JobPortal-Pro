@@ -59,6 +59,10 @@ const jobSchema = mongoose.Schema({
         min:[0,"This can't be negative"],
         default:0
     },
+    deadLine:{
+        type:Date,
+        required:true
+    },
     status:{
         type:String,
         enum:["active","in-active","discon"],
