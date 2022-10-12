@@ -67,6 +67,15 @@ module.exports.applyToAJob = async (req, res, next) => {
         id:user._id,
         pdfURL: resume
       }
+      const job = await getAJobsService(id);
+      const newDate = new Date();
+      if(job.deadLine.getTime < newDate.getTime()){
+        res.status(400).json({
+          status: "fail",
+          message: "Sorry, but you can't apply to this job now",
+          error: err.message,
+        });
+      }
       const appliedForTheJob = await applyToAJobService(id,data);
       res.status(200).json({
         status: "success",
