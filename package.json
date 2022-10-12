@@ -18,5 +18,17 @@
   "bugs": {
     "url": "https://github.com/farihatulmaria/JobPortal-Pro/issues"
   },
-  "homepage": "https://github.com/farihatulmaria/JobPortal-Pro#readme"
+  "homepage": "https://github.com/farihatulmaria/JobPortal-Pro#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.10.0",
+    "mongoose": "^6.6.5",
+    "multer": "^1.4.5-lts.1",
+    "validator": "^13.7.0"
+  }
 }
