@@ -5,12 +5,10 @@ const { generateToken } = require('../utils/token');
 
 module.exports.signUp = async (req,res,next)=>{
     const userInfo = req.body;
-    console.log(userInfo);
     try {
-        const user = await Users.find()
-        // const user = await signUpService(req.body);
-        // const token = user.generateConfirmationToken();
-        // await user.save({ validateBeforeSave: false });
+        const user = await signUpService(req.body);
+        const token = user.generateConfirmationToken();
+        await user.save({ validateBeforeSave: false });
 
         res.status(200).json({
             status:'passed',
