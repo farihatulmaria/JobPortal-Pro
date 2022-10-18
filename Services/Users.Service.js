@@ -1,7 +1,6 @@
 const Users = require("../Models/User.Models")
 
 module.exports.signUpService = async (userInfo)=>{
-    const users = await Users.find();
     const newUser = await Users.create(userInfo);
     return newUser;
 }

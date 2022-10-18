@@ -14,11 +14,7 @@ const usersSchme = mongoose.Schema({
     },
     password:{
         type:String,
-        required:[true,"Password is required"],
-        validate:{
-            validator:(value)=>validator.isStrongPassword(value),
-            message:"The password must be strong"
-        }
+        required:[true,"Password is required"]
     },
     confirmPassword:{
         type:String,

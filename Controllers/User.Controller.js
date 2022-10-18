@@ -7,20 +7,19 @@ module.exports.signUp = async (req,res,next)=>{
     const userInfo = req.body;
     console.log(userInfo);
     try {
-        const user = await signUpService(userInfo);
+        const user = await Users.find()
+        // const user = await signUpService(req.body);
         // const token = user.generateConfirmationToken();
         // await user.save({ validateBeforeSave: false });
 
         res.status(200).json({
             status:'passed',
-            message:"you are now a user",
-            Data:user
+            data:user
         })
     } catch (err) {
         res.status(400).json({
             status:'You shall not pass',
-            message:"you aren't a user now",
-            error:err.message
+            errorMessage:err.message
         })
     }
 }
@@ -41,7 +40,19 @@ module.exports.login = async (req,res,next)=>{
                 error:"You aren't a user. Please create a account first",
             })
         }
-        const isPasswordValid = user.comparePassword(password,user.password)
+        if(user.role === "Admin"){
+            const userToken = generateToken(user);
+            const {password:pwd ,...others} =  user.toObject();
+            res.status(200).json({
+                status:'passed',
+                message:"You are a user now",
+                Data:{
+                    user:others,
+                    token:userToken
+                }
+            })
+        }
+        const isPasswordValid = user.comparePassword(password,user.password);
         if(!isPasswordValid){
             res.status(403).json({
                 status:'You shall not pass',
